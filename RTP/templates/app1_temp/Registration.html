@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+
+{% block content %}
+   {% load static %}
+    {# if session is available then write #}
+    {% if request.session.contact %}
+        <h1>You Are A Member Already</h1>
+     {% else %}
+    <form action="{% url 'user_registration' %}" method="post">
+        {% csrf_token %}
+    <table align="center"border="0" width="400px" height="200px">
+     <tr>
+         <th colspan="2" style="text-align: center;font-size: 30px;font-family: 'Arial Black';background-color: yellow;color: deeppink">
+             Registration Form
+         </th>
+     </tr>
+      <tr>
+         <th>{{ form.name.label }}</th>
+         <th>{{ form.name }}</th>
+      </tr>
+      <tr>
+         <th>{{ form.contact.label }}</th>
+         <th>{{ form.contact }}</th>
+      </tr>
+      <tr>
+         <th>{{ form.email.label }}</th>
+         <th>{{ form.email }}</th>
+      </tr>
+      <tr>
+          <th>{{ form.password.label }}</th>
+          <th>{{ form.password }}</th>
+
+          {# <th>Password:<input type="password" name="password" required="" id="id_password"></th>#}
+
+      </tr>
+
+    <tr>
+        <th>
+        {#{{ form.otp.label }}#}
+         {#{{ form.otp }}#}
+         {# first you write {{ form.password }} and u fill all the table in browser and after right click this otp table and inspect this and copy this and paste  #}
+
+               <input type="hidden" name="otp" required="" id="id_otp" value="0">
+        </th>
+      </tr>
+      <tr>
+         <th style="text-align: center;background-color: crimson" colspan="2">
+             <button type="submit" class="btn btn-primary" >Register</button>
+         </th>
+      </tr>
+
+    </table>
+    </form>
+    {% endif %}
+{% endblock %}

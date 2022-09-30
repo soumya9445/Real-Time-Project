@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% load static %}
+    {% if request.session.contact %}
+        <h1>You Are A Logged In Already</h1>
+    {% else %}
+    <form action="{% url 'login_check' %}" method="post">
+       {% csrf_token %}
+    <table align="center" border="2">
+    <tr><th>Login Page</th></tr>
+    <tr><th><input type="email" placeholder="email" required name="u1"></th></tr>
+    <tr><th><input type="password" placeholder="password" required name="u2"></th></tr>
+    <tr><th><button type="submit">Login</button> </th></tr>
+    </table>
+    </form>
+    {% if error %}
+      <h1>{{ error }}</h1>
+    {% endif %}
+    {% if error1 %}
+      <h1>{{ error1 }}</h1>
+    {% endif %}
+
+    {% endif %}
+{% endblock %}
